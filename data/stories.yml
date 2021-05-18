@@ -1,0 +1,82 @@
+stories:
+ - story: Hello
+   steps:
+    - intent: greet
+    - action: utter_greet
+ 
+#  - story: schedule a meeting
+#    steps:
+#     - intent: schedule
+#     - action: action_activity_meet
+#     - intent: mail
+#     - slot_was_set:
+#       - activity: 'meeting'
+#     - action: utter_asktime
+#     - intent: timedate
+#     - slot_was_set:
+#       - activity: 'meeting' 
+#     - action: action_schedule_meet
+#     - slot_was_set: 
+#       - meet_status : 'set'
+#     - action: action_clear_slots
+  
+#  - story: schedule a meeting 2
+#    steps:
+#     - intent: schedule
+#     - action: action_activity_meet
+#     - intent: mail
+#     - slot_was_set:
+#       - activity: 'meeting'
+#     - action: utter_asktime
+#     - intent: timedate
+#     - slot_was_set:
+#       - activity: 'meeting' 
+#     - action: action_schedule_meet
+#     - slot_was_set:
+#       - meet_status: 'notset'
+#     - action: action_schedule_meet_busy
+#     - intent: timedate
+#     - slot_was_set:
+#       - activity: 'meeting'
+#     - action: action_schedule_meet
+    
+#  - story: ask time
+#    steps:
+#     - intent: whattime
+#     - action: utter_time
+
+#  - story: cancel meeting
+#    steps:
+#     - intent: cancel
+#     - action: action_activity_cancel
+#     - intent: timedate
+#     - slot_was_set:
+#       - activity: 'cancel'
+#     - action: action_cancel_meet
+#     - action: action_clear_slots
+
+#  - story: add member
+#    steps:
+#     - intent: addmember
+#     - action: action_add_member
+
+#  - story: leave apply 
+#    steps:
+#     - intent: leave_apply
+#     - action: utter_ask_reason
+#     - intent: reason
+#     - action: action_apply_leave
+
+#  - story: assign task
+#    steps:
+#     - intent: assigntask
+#     - action: action_activity_task
+#     - action: utter_ask_deadline
+#     - intent: deadline
+#     - slot_was_set: 
+#         - activity: "task"
+#     - action: utter_task
+#     - intent: task
+#     - action: action_assign_task
+
+

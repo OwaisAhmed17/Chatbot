@@ -1,0 +1,98 @@
+version: "2.0"
+rules:
+- rule: Activate Meeting Form
+  steps:
+  - intent: schedule
+  - action: schedule_form
+  - active_loop: schedule_form
+
+- rule: Submit Schedule Form
+  condition: 
+    - active_loop: schedule_form
+  
+  steps:
+  - action: schedule_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  
+  - action: action_schedule_meet
+  - action: utter_greet
+  
+
+- rule: Activate Task Form
+  steps:
+  - intent: assigntask
+  - action: assign_task_form
+  - active_loop: assign_task_form
+
+- rule: Submit Task Form
+  condition: 
+    - active_loop: assign_task_form
+  
+  steps:
+  - action: assign_task_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_task
+  - action: action_listen
+  - action: action_assign_task
+  - action: utter_greet
+
+- rule: Activate Leave Form
+  steps:
+  - intent: leave_apply
+  - action: leave_form
+  - active_loop: leave_form
+
+- rule: Submit Leave Form
+  condition: 
+    - active_loop: leave_form
+  
+  steps:
+  - action: leave_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_reason
+  - action: action_listen
+  - action: action_apply_leave
+  - action: utter_greet
+
+- rule: Activate Cancel Form
+  steps:
+  - intent: cancel
+  - action: cancel_form
+  - active_loop: cancel_form
+
+- rule: Submit Cancel Form
+  condition: 
+    - active_loop: cancel_form
+  
+  steps:
+  - action: cancel_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_cancel_meet
+  - action: utter_greet
+
+- rule: Activate invite Form
+  steps:
+  - intent: addmember
+  - action: invite_form
+  - active_loop: invite_form
+
+- rule: Submit Invite Form
+  condition: 
+    - active_loop: invite_form
+  
+  steps:
+  - action: invite_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_add_member
+  - action: utter_greet
+  

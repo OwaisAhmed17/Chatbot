@@ -1,0 +1,63 @@
+nlu:
+- intent: greet
+  examples: |
+    - Hi
+    - Hey!
+    - Hallo
+    - Good day
+    - Good morning
+
+- intent: leave_apply
+  examples: |
+    - Request a leave 
+    - Apply for a leave 
+
+- intent: reason
+  examples: |
+    - Paid
+    - Unpaid
+    - Maternal
+    - Paternal
+    - Sick
+
+- intent: schedule
+  examples: |
+    - Schedule a meeting 
+    - Conduct a meeting
+
+- intent: mail
+  examples: |
+    - abcdefg@gmail.com
+    - abcdefg@gmail.com and xyz@gmail.com
+
+- intent: timedate
+  examples: |
+    - Dec 9, 12PM
+    - Sep 25, 7AM
+ 
+
+
+- intent: whattime
+  examples: |
+    - whats the time?
+
+- intent: cancel 
+  examples: |
+    - Cancel a meeting 
+    - Delete a meeting 
+    - Cancel the meeting 
+
+- intent: addmember
+  examples: |
+    - Invite a member to the meeting
+    - Add a member to the meeting
+
+    
+
+- intent: assigntask
+  examples: |
+    - Assign a task 
+    - Give a task
+
+
+

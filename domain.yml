@@ -1,0 +1,214 @@
+version: '2.0'
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- greet:
+    use_entities: true
+- inform:
+    use_entities: true
+- subscribe:
+    use_entities: true
+- schedule:
+    use_entities: true
+- whattime:
+    use_entities: true
+- cancel:
+    use_entities: true
+- addmember:
+    use_entities: true
+- newtime:
+    use_entities: true
+- leave_apply:
+    use_entities: true
+- assigntask:
+    use_entities: true
+- task:
+    use_entities: true
+- deadline:
+    use_entities: true
+- reason:
+    use_entities: true
+- mail:
+    use_entities: true
+- timedate:
+    use_entities: true
+entities:
+- email
+- time
+slots:
+  email:
+    type: rasa.shared.core.slots.ListSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+  email1:
+    type: rasa.shared.core.slots.ListSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+  time:
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+  emailadd:
+    type: rasa.shared.core.slots.ListSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+  invitetime:
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+  deadline:
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+  canceltime:
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+  leavedate:
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+  task:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+  meet_status:
+    type: rasa.shared.core.slots.CategoricalSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+    values:
+    - set
+    - notset
+  role:
+    type: rasa.shared.core.slots.CategoricalSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+    values:
+    - manager
+    - employee
+  activity:
+    type: rasa.shared.core.slots.CategoricalSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+    values:
+    - meeting
+    - task
+    - cancel
+    - leave
+  requested_slot:
+    type: rasa.shared.core.slots.UnfeaturizedSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+responses:
+  utter_greet:
+  - buttons:
+    - payload: /schedule
+      title: Schedule a Meeting
+    - payload: /assigntask
+      title: Assign a Task
+    - payload: /leave_apply
+      title: Apply for a leave
+    - payload: /cancel
+      title: Cancel a Meeting
+    - payload: /addmember
+      title: Invite a member to a meeting
+    text: Hi! What can I do for you?
+  utter_subscribed:
+  - text: |
+      Check your inbox at email in order to finish subscribing to the newsletter!
+  - text: You're all set! Check your inbox at email to confirm your subscription.
+  utter_time:
+  - text: It is {time} and email is {email}
+  utter_meet_set:
+  - text: The meeting has been scheduled
+  utter_meet_not_set:
+  - text: The meeting can't be scheduled as not all members are free. The members are free during the below times
+  utter_reason:
+  - text: What is the reason behind you applying for a leave?
+  utter_ask_deadline:
+  - text: What's the deadline?
+  utter_task:
+  - text: What's the task?
+  utter_ask_time:
+  - text: 'What date and time should I schedule the meeting Eg: Jan 27th, 5PM?'
+  utter_ask_email:
+  - text: Who are the attendees?
+  utter_ask_email1:
+  - text: Who do you want to assign the task to?
+  utter_ask_leavedate:
+  - text: When do you want to take a leave?
+  utter_ask_canceltime:
+  - text: When is the meeting that you want to cancel ? (Eg- Dec 9, 6PM)
+  utter_ask_invitetime:
+  - text: What time is the meeting?
+  utter_ask_emailadd:
+  - text: Who do you want to add to the meeting?
+actions:
+- '...'
+- utter_greet
+- utter_subscribed
+- action_schedule_meet
+- utter_time
+- action_cancel_meet
+- action_add_member
+- utter_meet_set
+- utter_meet_not_set
+- action_schedule_meet_busy
+- action_clear_slots
+- action_role_check
+- utter_ask_reason
+- action_apply_leave
+- utter_ask_deadline
+- utter_task
+- action_assign_task
+- validate_schedule_form
+- validate_assign_task_form
+- validate_invite_form
+forms:
+  schedule_form:
+    email:
+    - entity: email
+      type: from_entity
+    time:
+    - entity: time
+      type: from_entity
+  assign_task_form:
+    deadline:
+    - entity: time
+      type: from_entity
+    email1:
+    - entity: email
+      type: from_entity
+  leave_form:
+    leavedate:
+    - entity: time
+      type: from_entity
+  cancel_form:
+    canceltime:
+    - entity: time
+      type: from_entity
+  invite_form:
+    invitetime:
+    - entity: time
+      type: from_entity
+    emailadd:
+    - entity: email
+      type: from_entity
+
+e2e_actions: []
